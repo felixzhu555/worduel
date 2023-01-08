@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { Button } from "reactstrap";
 import LetterGrid from "../components/LetterGrid";
 import * as data from "../wordle-words.json";
+import { useNavigate } from "react-router";
 
 function Wordle() {
-
+    
     const nav = useNavigate();
     const words = data.words;
+
+    const navHome = () => {
+        nav("/");
+    }
 
     const isLetter = (c) => {
         return c.length === 1 && c.toLowerCase() !== c.toUpperCase();
@@ -15,10 +19,6 @@ function Wordle() {
 
     const getRandomInt = (max) => {
         return Math.floor(Math.random() * max);
-    }
-
-    const navHome = () => {
-        nav("/");
     }
 
     const refreshWordle = () => {
@@ -69,12 +69,12 @@ function Wordle() {
 
     var buttonsDiv = gameOver ? (
         <div>
-            <Button onClick={navHome}>Main Menu</Button>
+            <Button onClick={navHome} color="primary">Main Menu</Button>
             <Button onClick={refreshWordle}>Play Again</Button>
         </div>
     ) : (
         <div>
-            <Button onClick={navHome}>Main Menu</Button>
+            <Button onClick={navHome} color="primary">Main Menu</Button>
         </div>
     );
 

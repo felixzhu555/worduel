@@ -1,0 +1,17 @@
+.worduel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.one-third-width {
+    width: 33%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}

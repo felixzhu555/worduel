@@ -3,7 +3,8 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Wordle from "./pages/Wordle";
-import Worduel from "./pages/Worduel";
+import WorduelSetup from "./pages/WorduelSetup";
+import GetWorduelCode from "./pages/GetWorduelCode";
 
 function App() {
   return (
@@ -19,7 +20,11 @@ function App() {
         />
         <Route 
           path="/worduel" 
-          element={<Worduel />} 
+          element={<WorduelSetup />} 
+        />
+        <Route
+          path="/worduel/:code"
+          element={<GetWorduelCode />}
         />
         <Route 
           path="*" 

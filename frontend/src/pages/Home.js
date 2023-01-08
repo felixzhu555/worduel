@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function Home() {
 
@@ -9,6 +9,7 @@ function Home() {
     const navWordle = () => {
         nav("/wordle");
     }
+
     const navWorduel = () => {
         nav("/worduel");
     }
@@ -16,8 +17,8 @@ function Home() {
     return (
         <div>
             <h1>Welcome to Worduel!</h1>
-            <Button onClick={navWordle}>Classic Wordle</Button>
-            <Button onClick={navWorduel}>Worduel</Button>
+            <Button onClick={navWordle} color="primary">Classic Wordle</Button>
+            <Button onClick={navWorduel} color="primary">Worduel</Button>
         </div>
     )
 }
