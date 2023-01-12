@@ -12,11 +12,30 @@ function LetterRow({guess, answer, isCurrentRow}) {
     if (isCurrentRow) {
         return (
             <div className="letter-row">
-                {letters.map((letter, i) => {
-                    return <LetterSquare key={i} letter={letter} color="white"/>;
-                })}
+                {letters.map((letter, i) => 
+                    <LetterSquare key={i} letter={letter} color="white"/>
+                )}
             </div>
         )
+    }
+
+    var colors = getColors(guess, answer);
+    var squares = [];
+    for (let i = 0; i < 5; i++) {
+        squares.push(<LetterSquare key={i} letter={letters[i]} color={colors[i]}/>);
+    }
+
+    return (
+        <div className="letter-row">
+            {squares}
+        </div>
+    )
+}
+
+function getColors(guess, answer) {
+    var letters = ["", "", "", "", ""];
+    for (let i = 0; i < guess.length; i++) {
+        letters[i] = guess.charAt(i);
     }
 
     var answerLetterCounts = new Map();
@@ -61,17 +80,23 @@ function LetterRow({guess, answer, isCurrentRow}) {
             }
         }
     }
-    
-    var squares = [];
-    for (let i = 0; i < 5; i++) {
-        squares.push(<LetterSquare key={i} letter={letters[i]} color={colors[i]}/>);
-    }
 
-    return (
-        <div className="letter-row">
-            {squares}
-        </div>
-    )
+    return colors;
+}
+
+export function getColorString(guess, answer) {
+    let colors = getColors(guess, answer);
+    let ret = "";
+    for (let color of colors) {
+        if (color === "green") {
+            ret += "g";
+        } else if (color === "yellow") {
+            ret += "y";
+        } else if (color === "gray") {
+            ret += "x";
+        }
+    }
+    return ret;
 }
 
 export default LetterRow;

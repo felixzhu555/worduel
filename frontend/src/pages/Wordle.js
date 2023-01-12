@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "reactstrap";
 import LetterGrid from "../components/LetterGrid";
 import * as data from "../wordle-words.json";
 import { useNavigate } from "react-router";
 
+// TODO: add colored keyboard feature
 function Wordle() {
     
     const nav = useNavigate();
+    const divRef = useRef(null);
     const words = data.words;
 
     const navHome = () => {
@@ -35,8 +37,6 @@ function Wordle() {
     const [message, setMessage] = useState("Can you guess the word within six tries?");
     const [gameOver, setGameOver] = useState(false);
     
-    // TODO: fix issue where keypresses aren't registered unless the div is clicked
-    // e.g. if the page is refreshed and you immediately type, nothing happens
     const handleKeyPress = (e) => {
         if (currentGuess === "game over") {
             return;
@@ -78,8 +78,12 @@ function Wordle() {
         </div>
     );
 
+    useEffect(() => {
+        divRef.current.focus();
+    })
+
     return (
-        <div onKeyDown={handleKeyPress} tabIndex={0} style={{outline: "none"}}>
+        <div ref={divRef} onKeyDown={handleKeyPress} tabIndex={0} style={{outline: "none"}}>
             <h1>Wordle! {answer}</h1>
             <h3>{message}</h3>
             {buttonsDiv}

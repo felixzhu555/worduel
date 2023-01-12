@@ -26,7 +26,7 @@ function OpponentGrid({ username, grid }) {
             }
             row.push(
                 <div key={j} className="letter-square" id={color}
-                style={{width: "20px", height: "20px", margin: "1px"}}>
+                style={{width: "25px", height: "25px", margin: "2px"}}>
                 </div>
             );
         }
@@ -39,7 +39,7 @@ function OpponentGrid({ username, grid }) {
             for (let j = 0; j < 5; j++) {
                 row.push(
                     <div key={j} className="letter-square" id="white"
-                    style={{width: "20px", height: "20px", margin: "1px"}}>
+                    style={{width: "25px", height: "25px", margin: "2px"}}>
                     </div>
                 )
             }
